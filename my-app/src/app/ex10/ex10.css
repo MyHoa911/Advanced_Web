@@ -1,0 +1,46 @@
+.result table {
+    width: 100%;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    color: blue;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+select {
+    padding: 4px;
+}
+
+button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.result td:last-child{
+    color: red;
+}
+.result h3 {
+    text-align: center;
+    color: blue;
+}
+
+table {
+    width: 520px;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+td {
+    border: 1px solid #ccc;
+    padding: 6px;
+}
