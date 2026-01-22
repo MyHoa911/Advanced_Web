@@ -1,1 +1,20 @@
-<p>listproduct works!</p>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>IMAGE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products">
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.price}}</td>
+            <td>
+                <img src="{{p.image}}" height="100" width="100"/>
+            </td>
+        </tr>
+    </tbody>
+</table>
