@@ -18,4 +18,8 @@ export class Customer {
     let c = this.customers.find(x => x.id === id);
     return c;
   }
+  filter_customers_by_age(a:number, b:number) 
+  {
+    return this.customers.filter(c => c.age >= a && c.age <= b);
+  }
 }
