@@ -1,4 +1,4 @@
-<table>
+<table border="1">
     <thead>
         <tr>
             <th>ID</th>
@@ -8,12 +8,16 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of products">
+        <tr *ngFor="let p of products" [ngClass]="{'highlight': p.price == selected_id}">
             <td>{{p.id}}</td>
             <td>{{p.name}}</td>
-            <td>{{p.price}}</td>
+            <td [ngClass]="{'error_price':p.price<0}">{{p.price}}</td>
             <td>
-                <img src="{{p.image}}" height="100" width="100"/>
+                <img src="{{p.image}}" height="100" width="100" 
+                    title="click for viewing detail"
+                    style="cursor: pointer;"
+                    (click)="view_detail(p.id)"
+                    />
             </td>
         </tr>
     </tbody>

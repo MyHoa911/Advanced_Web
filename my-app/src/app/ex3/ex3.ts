@@ -1,8 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ex3',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './ex3.html',
   styleUrl: './ex3.css',
 })
