@@ -10,6 +10,7 @@ import { FakeProduct } from './fake-product/fake-product';
 import { ServiceProductImageEvent } from './ex13/service-product-image-event/service-product-image-event';
 import { ServiceProductImageEventDetail } from './ex13/service-product-image-event-detail/service-product-image-event-detail';
 import { Ex18 } from './ex18/ex18';
+import { Ex19 } from './ex19/ex19';
 import { Product } from './ex19/product/product';
 import { ListProduct } from './ex19/list-product/list-product';
 import { ServiceProduct } from './ex19/service-product/service-product';
@@ -24,6 +25,7 @@ export const routes: Routes = [
     {path:'service-product-image-event', component:ServiceProductImageEvent},
     {path:'service-product-image-event/:id', component:ServiceProductImageEventDetail},
     {path:"ex18", component:Ex18},
+    {path:"ex19", component:Ex19},
     {path:"ex26",component:FakeProduct},
     {path:'product',component:Product},
     {path:'list-product',component:ListProduct},
