@@ -8,5 +8,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './ex19.css',
 })
 export class Ex19 {
-
+  
 }
