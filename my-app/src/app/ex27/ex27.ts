@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './ex27.css',
 })
 export class Ex27 {
-
+  public errMessage: string = '';
 }
