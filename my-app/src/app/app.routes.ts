@@ -14,6 +14,7 @@ import { Ex19 } from './ex19/ex19';
 import { Product } from './ex19/product/product';
 import { ListProduct } from './ex19/list-product/list-product';
 import { ServiceProduct } from './ex19/service-product/service-product';
+import { Ex27 } from './ex27/ex27';
 
 export const routes: Routes = [
     {path:"gioi-thieu", component: About},
@@ -27,6 +28,7 @@ export const routes: Routes = [
     {path:"ex18", component:Ex18},
     {path:"ex19", component:Ex19},
     {path:"ex26",component:FakeProduct},
+    {path:"ex27",component:Ex27},
     {path:'product',component:Product},
     {path:'list-product',component:ListProduct},
     {path:'service-product',component:ServiceProduct},
