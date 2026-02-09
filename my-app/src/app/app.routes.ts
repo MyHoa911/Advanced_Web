@@ -18,6 +18,10 @@ import { Ex27 } from './ex27/ex27';
 import { Ex28 } from './ex28/ex28';
 import { Form } from './form/form';
 import { ReactiveForm } from './reactive-form/reactive-form';
+import { BookDetail } from './book-detail/book-detail';
+import { FileUpload } from './file-upload/file-upload';
+import { Books } from './books/books';
+import { Ex50 } from './ex50/ex50';
 
 export const routes: Routes = [
     {path:"gioi-thieu", component: About},
@@ -33,6 +37,10 @@ export const routes: Routes = [
     {path:"ex26",component:FakeProduct},
     {path:"ex27",component:Ex27},
     {path:"ex28",component:Ex28},
+    {path:"e39",component:Books},
+    {path:"ex41",component:BookDetail},
+    {path:"ex49",component:FileUpload},
+    {path:"ex50", component:Ex50},
     {path:'product',component:Product},
     {path:'list-product',component:ListProduct},
     {path:'service-product',component:ServiceProduct},
@@ -45,4 +53,6 @@ export const RoutingComponent=[
     Product,
     ListProduct,
     ServiceProduct,
+    Books,
+    BookDetail,
 ]
