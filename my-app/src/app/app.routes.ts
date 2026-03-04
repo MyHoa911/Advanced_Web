@@ -22,6 +22,9 @@ import { BookDetail } from './book-detail/book-detail';
 import { FileUpload } from './file-upload/file-upload';
 import { Books } from './books/books';
 import { Ex50 } from './ex50/ex50';
+import { BookUpdate } from './book-update/book-update';
+import { Fashion } from './myclasses/Fashion';
+import { MomoPayment } from './momo-payment/momo-payment';
 
 export const routes: Routes = [
     {path:"gioi-thieu", component: About},
@@ -39,13 +42,19 @@ export const routes: Routes = [
     {path:"ex28",component:Ex28},
     {path:"e39",component:Books},
     {path:"ex41",component:BookDetail},
+    {path:"ex41/:id",component:BookDetail},
+    // {path:"ex43",component:NewBook},
+    {path:"ex45",component:BookUpdate},
+    {path:"ex45/:id",component:BookUpdate},
     {path:"ex49",component:FileUpload},
     {path:"ex50", component:Ex50},
+    {path:"ex53", component:Fashion},
     {path:'product',component:Product},
     {path:'list-product',component:ListProduct},
     {path:'service-product',component:ServiceProduct},
     {path:"form", component:Form},
     {path:"reactive", component: ReactiveForm},
+    {path:"momo-payment", component: MomoPayment},
     {path:"**", component: Notfound}
 ];
 

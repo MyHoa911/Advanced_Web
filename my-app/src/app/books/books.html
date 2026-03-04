@@ -6,6 +6,7 @@
         <td>BookName</td>
         <td>Price</td>
         <td>Image</td>
+        <td>Action:</td>
     </tr>
     <tbody>
         <tr *ngFor="let book of books">
@@ -13,8 +14,13 @@
             <td>{{book.BookName}}</td>
             <td>{{book.Price}} </td>
             <td>
-            <img src="assets/book_images/{{book.Image}}" width="50px"
-            height="50px">
+            <img src="http://localhost:3000/images/{{book.Image}}" width="50px"
+            height="50px" (click)="view_detail(book.BookId)">
+            </td>
+            <td>
+                <a routerLink="../ex45">Update</a>
+                |
+                <a (click)="process_remove(book)">Delete</a>
             </td>
         </tr>
     </tbody>
