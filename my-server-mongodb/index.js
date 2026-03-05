@@ -193,6 +193,22 @@ res.send(infor)
 })
 
 
+// EX62
+var session = require('express-session');
+app.use(session({secret: "Shh, its a secret!"}));
+app.get("/contact",cors(),(req,res)=>{
+if(req.session.visited!=null)
+{
+req.session.visited++
+res.send("You visited this page "+req.session.visited +" times")
+}
+else
+{
+req.session.visited=1
+res.send("Welcome to this page for the first time!")
+}
+})
+
 
 // MOMO PAYMENT
 
