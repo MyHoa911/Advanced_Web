@@ -165,6 +165,11 @@ infor+="account.password = "+account.password+"<br/>"
 res.send(infor) 
 })
 
+//Expires after 360000 ms from the time it is set.
+res.cookie("infor_limit1", 'I am limited Cookie - way 1', {expire: 360000 +
+Date.now()});
+res.cookie("infor_limit2", 'I am limited Cookie - way 2', {maxAge: 360000});
+
 // Clear saved Cookies
 app.get("/clear-cookie",cors(),(req,res)=>{
 res.clearCookie("account")
