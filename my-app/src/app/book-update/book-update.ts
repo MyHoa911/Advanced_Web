@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BookAPIService } from '../myservices/book-apiservice';
 import { Book } from '../myclasses/iBook';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-update',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './book-update.html',
   styleUrl: './book-update.css',
 })

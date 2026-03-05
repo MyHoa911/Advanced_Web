@@ -1,0 +1,27 @@
+<p>fashion-detail works!</p>
+<a routerLink="/ex53">Return to list</a>
+<p>{{errMessage}}</p>
+Fashion Id: <input type="text" #fid> <button (click)="searchFashion(fid.value)">Search</button>
+<table>
+    <tr>
+        <td>Fashion Id:</td>
+        <td>{{fashion._id}}</td>
+    </tr>
+    <tr>
+        <td>Style:</td>
+        <td>{{fashion.style}}</td>
+    </tr>
+    <tr>
+        <td>Fashion Subject:</td>
+        <td>{{fashion.fashion_subject}}</td>
+    </tr>
+    <tr>
+        <td>Fashion Detail:</td>
+        <td>{{fashion.fashion_detail}}</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <img [src]="fashion.fashion_image" width="50" height="50" (click)="view_detail(fashion._id)"/>
+        </td>
+    </tr>
+</table>

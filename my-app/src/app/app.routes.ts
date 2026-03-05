@@ -23,10 +23,15 @@ import { FileUpload } from './file-upload/file-upload';
 import { Books } from './books/books';
 import { Ex50 } from './ex50/ex50';
 import { BookUpdate } from './book-update/book-update';
-import { Fashion } from './myclasses/Fashion';
+import { Fashion } from './fashion/fashion';
+import { FashionDetail } from './fashion-detail/fashion-detail';
 import { MomoPayment } from './momo-payment/momo-payment';
+import { Login } from './login/login';
+import { Register } from './register/register';
+import { AuthGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
+    {path: '', redirectTo: '/login', pathMatch: 'full' },
     {path:"gioi-thieu", component: About},
     {path:"khach-hang-1", component: Listcustomer},
     {path:"khach-hang-2", component: Listcustomer2},
@@ -48,14 +53,18 @@ export const routes: Routes = [
     {path:"ex45/:id",component:BookUpdate},
     {path:"ex49",component:FileUpload},
     {path:"ex50", component:Ex50},
-    {path:"ex53", component:Fashion},
+    {path:"ex53", component:Fashion, canActivate:[AuthGuard]},
+    {path:"ex53/:id", component:FashionDetail, canActivate:[AuthGuard]},
     {path:'product',component:Product},
     {path:'list-product',component:ListProduct},
     {path:'service-product',component:ServiceProduct},
     {path:"form", component:Form},
     {path:"reactive", component: ReactiveForm},
     {path:"momo-payment", component: MomoPayment},
-    {path:"**", component: Notfound}
+    { path:"login", component: Login},
+    { path:"register", component: Register},
+    {path:"**", component: Notfound},
+    
 ];
 
 export const RoutingComponent=[

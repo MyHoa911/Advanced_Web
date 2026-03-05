@@ -13,7 +13,8 @@
             <td>{{fashion.fashion_subject}}</td>
             <td>{{fashion.fashion_detail}} </td>
             <td>
-                <img src="{{parse_image(fashion.fashion_image)}}" width="100px" height="100px">
+                <img src="{{parseImage(fashion.fashion_image)}}" width="100px" height="100px"
+                     (click)="view_detail(fashion._id)" style="cursor:pointer" />
             </td>
         </tr>
     </tbody>

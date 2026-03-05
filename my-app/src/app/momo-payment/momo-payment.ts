@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MomoAPIService, MomoPaymentRequest } from '../myservices/momo-apiservice';
 
 @Component({
   selector: 'app-momo-payment',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './momo-payment.html',
   styleUrl: './momo-payment.css',
 })
