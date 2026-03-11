@@ -1,0 +1,49 @@
+<div class="detail-page">
+  <div class="container py-4" style="max-width:860px">
+
+    <!-- Back Button -->
+    <button class="btn btn-outline-dark mb-4" (click)="goBack()">
+      <i class="bi bi-arrow-left me-1"></i> Back to Fashion List
+    </button>
+
+    @if (errMessage) {
+      <div class="alert alert-danger">{{ errMessage }}</div>
+    }
+
+    @if (fashion) {
+      <article class="fashion-article">
+        <span class="style-badge">{{ fashion.style }}</span>
+        <h2 class="article-title mt-2 mb-3">{{ fashion.fashion_subject }}</h2>
+
+        <!-- WYSIWYG content rendered as HTML -->
+        @if (fashion.fashion_detail) {
+          <div class="wysiwyg-content mb-4" [innerHTML]="safeDetail"></div>
+        }
+
+        <!-- Thumbnail image -->
+        @if (fashion.fashion_image) {
+          <figure class="article-image">
+            <img
+              [src]="fashion.fashion_image"
+              [alt]="fashion.fashion_subject"
+              class="img-fluid rounded"
+              onerror="this.style.display='none'"
+            />
+          </figure>
+        }
+
+        @if (fashion.created_at) {
+          <p class="text-muted small mt-3">
+            <i class="bi bi-calendar3 me-1"></i>
+            {{ fashion.created_at | date:'mediumDate' }}
+          </p>
+        }
+      </article>
+    } @else if (!errMessage) {
+      <div class="text-center py-5">
+        <div class="spinner-border text-dark" role="status"></div>
+        <p class="mt-3 text-muted">Loading...</p>
+      </div>
+    }
+  </div>
+</div>

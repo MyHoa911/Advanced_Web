@@ -29,6 +29,11 @@ import { MomoPayment } from './momo-payment/momo-payment';
 import { Login } from './login/login';
 import { Register } from './register/register';
 import { AuthGuard } from './guards/auth-guard';
+import { Ex58 } from './ex58/ex58';
+import { Ex58ClientList } from './ex58/ex58-client-list/ex58-client-list';
+import { Ex58ClientDetail } from './ex58/ex58-client-detail/ex58-client-detail';
+import { Ex58AdminList } from './ex58/ex58-admin-list/ex58-admin-list';
+import { Ex58AdminForm } from './ex58/ex58-admin-form/ex58-admin-form';
 
 export const routes: Routes = [
     {path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -55,6 +60,17 @@ export const routes: Routes = [
     {path:"ex50", component:Ex50},
     {path:"ex53", component:Fashion, canActivate:[AuthGuard]},
     {path:"ex53/:id", component:FashionDetail, canActivate:[AuthGuard]},
+    {
+      path: "ex58",
+      component: Ex58,
+      children: [
+        { path: '', component: Ex58ClientList, pathMatch: 'full' },
+        { path: 'detail/:id', component: Ex58ClientDetail },
+        { path: 'admin', component: Ex58AdminList },
+        { path: 'admin/new', component: Ex58AdminForm },
+        { path: 'admin/edit/:id', component: Ex58AdminForm },
+      ]
+    },
     {path:'product',component:Product},
     {path:'list-product',component:ListProduct},
     {path:'service-product',component:ServiceProduct},

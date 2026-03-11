@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
-import { Ex63CartService } from '../../cart';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Ex63CartService } from '../../cart';
+import { CartItem, CheckoutForm } from '../../cart.model';
 
 @Component({
   selector: 'app-shopping-cart',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './shopping-cart.html',
   styleUrl: './shopping-cart.css',
 })
-export class ShoppingCart {
+export class ShoppingCart implements OnInit {
   cartItems: CartItem[] = [];
   total: number = 0;
   loading: boolean = true;

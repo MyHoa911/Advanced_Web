@@ -38,8 +38,8 @@
         <p class="product-desc">{{ product.description }}</p>
         <div class="product-footer">
           <span class="product-price">{{ formatPrice(product.price) }}</span>
-          <span class="product-stock" [class.low-stock]="product.stock < 10">
-            Còn {{ product.stock }} cái
+          <span class="product-stock" [class.low-stock]="(product.stock ?? 0) < 10">
+            Còn {{ product.stock ?? 0 }} cái
           </span>
         </div>
         <button class="btn-add" (click)="addToCart(product)" [disabled]="product.stock === 0">

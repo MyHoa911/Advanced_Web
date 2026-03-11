@@ -1,14 +1,18 @@
-import { Component } from '@angular/core';
-import { Product } from '../../../ex19/product/product';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { Ex63ProductService, Ex63Product } from '../../product';
+import { Ex63CartService } from '../../cart';
 
 @Component({
   selector: 'app-product-list',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
 })
-export class ProductList {
-  products: Product[] = [];
+export class ProductList implements OnInit {
+  products: Ex63Product[] = [];
   cartCount: number = 0;
   addedProductId: string | null = null;
   errorMessage: string = '';
@@ -46,7 +50,7 @@ export class ProductList {
     });
   }
 
-  addToCart(product: Product): void {
+  addToCart(product: Ex63Product): void {
     this.cartService.addToCart(product._id!, 1).subscribe({
       next: (res) => {
         this.cartCount = res.cart.length;

@@ -1,0 +1,27 @@
+.admin-form-page {
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.quill-editor-container {
+  min-height: 200px;
+  background: #fff;
+}
+
+/* Override Quill toolbar borders to fit Bootstrap look */
+:host ::ng-deep .ql-toolbar {
+  border: 1px solid #dee2e6;
+  border-radius: 6px 6px 0 0;
+  background: #f8f9fa;
+}
+
+:host ::ng-deep .ql-container {
+  border: 1px solid #dee2e6;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  font-size: 1rem;
+}
+
+:host ::ng-deep .ql-editor {
+  min-height: 200px;
+}

@@ -1,0 +1,94 @@
+<div class="admin-page">
+  <div class="container-fluid py-3">
+
+    <!-- Header -->
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-outline-secondary btn-sm" (click)="goClient()">
+          <i class="bi bi-arrow-left"></i> Client View
+        </button>
+        <h4 class="mb-0 ms-2">
+          <i class="bi bi-collection me-2"></i>Fashion Management
+        </h4>
+      </div>
+      <button class="btn btn-dark" (click)="addNew()">
+        <i class="bi bi-plus-circle me-1"></i> Add New Fashion
+      </button>
+    </div>
+
+    @if (errMessage) {
+      <div class="alert alert-danger alert-dismissible">
+        {{ errMessage }}
+        <button type="button" class="btn-close" (click)="errMessage=''"></button>
+      </div>
+    }
+    @if (successMessage) {
+      <div class="alert alert-success alert-dismissible">
+        {{ successMessage }}
+        <button type="button" class="btn-close" (click)="successMessage=''"></button>
+      </div>
+    }
+
+    <!-- Table -->
+    <div class="table-responsive">
+      <table class="table table-striped table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Thumbnail</th>
+            <th>Title</th>
+            <th>Style</th>
+            <th>Created</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of fashions; track item._id; let i = $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>
+                <img
+                  [src]="item.fashion_image || ''"
+                  width="80" height="55"
+                  style="object-fit:cover; border-radius:4px;"
+                  onerror="this.src='https://via.placeholder.com/80x55?text=N/A'"
+                  [alt]="item.fashion_subject"
+                />
+              </td>
+              <td>{{ item.fashion_subject }}</td>
+              <td>
+                <span class="badge bg-secondary">{{ item.style }}</span>
+              </td>
+              <td>
+                @if (item.created_at) {
+                  {{ item.created_at | date:'dd/MM/yyyy' }}
+                } @else {
+                  —
+                }
+              </td>
+              <td class="text-center">
+                <button class="btn btn-info btn-sm me-1" title="View" (click)="view(item._id)">
+                  <i class="bi bi-eye-fill"></i>
+                </button>
+                <button class="btn btn-warning btn-sm me-1" title="Edit" (click)="edit(item._id)">
+                  <i class="bi bi-pencil-fill"></i>
+                </button>
+                <button class="btn btn-danger btn-sm" title="Delete"
+                  (click)="deleteFashion(item._id, item.fashion_subject)">
+                  <i class="bi bi-trash-fill"></i>
+                </button>
+              </td>
+            </tr>
+          }
+          @if (fashions.length === 0) {
+            <tr>
+              <td colspan="6" class="text-center text-muted py-5">No fashions found.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-muted small">Total: {{ fashions.length }} item(s)</p>
+  </div>
+</div>

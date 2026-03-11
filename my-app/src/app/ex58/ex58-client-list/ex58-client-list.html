@@ -1,0 +1,75 @@
+<div class="fashion-website">
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="row align-items-center py-3">
+        <div class="col-md-4">
+          <h1 class="site-title mb-0">FASHION</h1>
+        </div>
+        <div class="col-md-6">
+          <div class="input-group search-bar">
+            <select class="form-select style-select" [(ngModel)]="searchStyle">
+              <option value="">-- All Styles --</option>
+              @for (style of styleList; track style) {
+                <option [value]="style">{{ style }}</option>
+              }
+            </select>
+            <input type="text" class="form-control" placeholder="Search by style..." [(ngModel)]="searchStyle" />
+            <button class="btn btn-dark px-4" (click)="search()">SEARCH</button>
+            @if (searchStyle) {
+              <button class="btn btn-outline-secondary" (click)="clearSearch()">
+                <i class="bi bi-x"></i>
+              </button>
+            }
+          </div>
+        </div>
+        <div class="col-md-2 text-end">
+          <button class="btn btn-outline-dark btn-sm" (click)="goAdmin()">
+            <i class="bi bi-gear-fill me-1"></i>Admin
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Error -->
+  @if (errMessage) {
+    <div class="alert alert-danger m-3">{{ errMessage }}</div>
+  }
+
+  <!-- Fashion Groups -->
+  <main class="container py-4">
+    @for (style of objectKeys(groupedFashions); track style) {
+      <section class="style-section mb-5">
+        <h2 class="style-title text-center mb-4">{{ style }}</h2>
+        <div class="fashion-grid">
+          @for (item of groupedFashions[style]; track item._id) {
+            <div class="fashion-card" (click)="viewDetail(item._id)">
+              <div class="card-img-wrapper">
+                <img
+                  [src]="item.fashion_image || 'assets/no-image.png'"
+                  [alt]="item.fashion_subject"
+                  class="card-thumbnail"
+                  onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'"
+                />
+                <div class="card-overlay">
+                  <i class="bi bi-eye-fill"></i>
+                </div>
+              </div>
+              <div class="card-caption">
+                <p class="caption-text">{{ item.fashion_subject }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    }
+
+    @if (objectKeys(groupedFashions).length === 0 && !errMessage) {
+      <div class="text-center py-5 text-muted">
+        <i class="bi bi-search" style="font-size:3rem"></i>
+        <p class="mt-3">No fashions found.</p>
+      </div>
+    }
+  </main>
+</div>

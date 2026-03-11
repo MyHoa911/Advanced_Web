@@ -26,17 +26,75 @@ app.use(cookieParser());
 
 
 app.get("/fashions",cors(),async (req,res)=>{ 
-const result = await fashionCollection.find({}).toArray();
-res.send(result)
+  let query = {};
+  if (req.query.style) {
+    query = { style: req.query.style };
+  }
+  const result = await fashionCollection.find(query).sort({ created_at: -1 }).toArray();
+  res.send(result)
 }   
 )
 
 app.get("/fashions/:id",cors(),async (req,res)=>{
-var o_id = new ObjectId(req.params["id"]);
-const result = await fashionCollection.find({_id:o_id}).toArray(); 
-res.send(result[0])
+  try {
+    var o_id = new ObjectId(req.params["id"]);
+    const result = await fashionCollection.find({_id:o_id}).toArray(); 
+    res.send(result[0])
+  } catch(err) {
+    res.status(400).json({ error: "Invalid id" });
+  }
 }
 )
+
+// EX58 - POST add new fashion
+app.post("/fashions", cors(), async (req, res) => {
+  try {
+    const { style, fashion_subject, fashion_detail, fashion_image } = req.body;
+    const newFashion = {
+      style,
+      fashion_subject,
+      fashion_detail,
+      fashion_image,
+      created_at: new Date()
+    };
+    const result = await fashionCollection.insertOne(newFashion);
+    res.status(201).json({ message: "Created successfully", insertedId: result.insertedId });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// EX58 - PUT update fashion by id
+app.put("/fashions/:id", cors(), async (req, res) => {
+  try {
+    const { style, fashion_subject, fashion_detail, fashion_image } = req.body;
+    const updateData = { style, fashion_subject, fashion_detail };
+    if (fashion_image) updateData.fashion_image = fashion_image;
+    const result = await fashionCollection.updateOne(
+      { _id: new ObjectId(req.params.id) },
+      { $set: updateData }
+    );
+    if (result.matchedCount === 0)
+      return res.status(404).json({ error: "Not found" });
+    res.json({ message: "Updated successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// EX58 - DELETE fashion by id
+app.delete("/fashions/:id", cors(), async (req, res) => {
+  try {
+    const result = await fashionCollection.deleteOne({
+      _id: new ObjectId(req.params.id)
+    });
+    if (result.deletedCount === 0)
+      return res.status(404).json({ error: "Not found" });
+    res.json({ message: "Deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // POST /login - Check credentials from MongoDB User collection and set cookies
 app.post("/login", cors({ credentials: true }), async (req, res) => {
@@ -166,9 +224,9 @@ res.send(infor)
 })
 
 //Expires after 360000 ms from the time it is set.
-res.cookie("infor_limit1", 'I am limited Cookie - way 1', {expire: 360000 +
-Date.now()});
-res.cookie("infor_limit2", 'I am limited Cookie - way 2', {maxAge: 360000});
+// res.cookie("infor_limit1", 'I am limited Cookie - way 1', {expire: 360000 +
+// Date.now()});
+// res.cookie("infor_limit2", 'I am limited Cookie - way 2', {maxAge: 360000});
 
 // Clear saved Cookies
 app.get("/clear-cookie",cors(),(req,res)=>{

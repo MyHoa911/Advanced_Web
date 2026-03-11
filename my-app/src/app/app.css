@@ -33,7 +33,9 @@ padding:.3em 6px;
 #container li ul
 {position:absolute;
 display:none;
-width:10em
+width:10em;
+z-index:9999;
+background:gray;
 }
 #container li:hover ul {
  display:block;
